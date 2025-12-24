@@ -1,0 +1,29 @@
+{
+  "productos": [
+    {
+      "id": 1,
+      "nombre": "Laptop Dell XPS 13",
+      "precio": 1299.99,
+      "categoria": "Electrónica",
+      "stock": 15,
+      "descripcion": "Laptop ultrabook de alto rendimiento"
+    },
+    {
+      "id": 2,
+      "nombre": "Mouse Logitech MX Master",
+      "precio": 99.99,
+      "categoria": "Accesorios",
+      "stock": 50,
+      "descripcion": "Mouse ergonómico inalámbrico"
+    },
+    {
+      "id": 3,
+      "nombre": "Teclado Mecánico Keychron K2",
+      "precio": 89.99,
+      "categoria": "Accesorios",
+      "stock": 30,
+      "descripcion": "Teclado mecánico inalámbrico"
+    }
+  ],
+  "favoritos": []
+}
