@@ -8,9 +8,10 @@ export const ProductosContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(productoReducer, initialState);
 
   const cargarProductos = useCallback(async () => {
+      dispatch({ type: ACTION.PRODUCT_LOADING_START });
     try {
       const productos = await productoService.obtenerTodosProductos();
-      dispatch({ type: ACTION.PRODUCT_LOADING_START, payload: productos });
+      dispatch({ type: ACTION.PRODUCT_LOADING_SUCCESS, payload: productos });
     } catch (error) {
       dispatch({
         type: ACTION.PRODUCT_LOADING_ERROR,
@@ -20,6 +21,7 @@ export const ProductosContextProvider = ({ children }) => {
   }, []);
 
   const cargarProductoId = useCallback(async (id) => {
+      dispatch({ type: ACTION.PRODUCT_LOADING_START });
     try {
       const producto = await productoService.obtenerProdutoId(id);
       dispatch({ type: ACTION.PRODUCT_LOADING_SUCCESS, payload: producto });

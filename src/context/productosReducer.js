@@ -69,7 +69,7 @@ export const productoReducer = (state, action) => {
       return {
         ...state,
         error: action.payload,
-        cargando: false,
+        loading: false,
       };
 
     case ACTION.CLEAR_ERROR:
