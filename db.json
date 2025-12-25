@@ -23,6 +23,14 @@
       "categoria": "Accesorios",
       "stock": 30,
       "descripcion": "Teclado mecánico inalámbrico"
+    },
+    {
+      "id": "7c66",
+      "nombre": "test",
+      "precio": 12,
+      "categoria": "test",
+      "stock": 12,
+      "descripcion": "test"
     }
   ],
   "favoritos": []

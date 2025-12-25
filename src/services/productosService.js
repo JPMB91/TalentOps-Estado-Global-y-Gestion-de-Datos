@@ -23,7 +23,7 @@ export const productoService = {
   },
 
   crearProducto: async (producto) => {
-    const response = await axios.post(producto);
+    const response = await axios.post(API_URL,producto);
     return response.data;
   },
 };
