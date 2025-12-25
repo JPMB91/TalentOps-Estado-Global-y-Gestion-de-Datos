@@ -1,70 +1,98 @@
-# Getting Started with Create React App
+# Sistema de Gestión de Productos
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Sistema completo de gestión de productos construido con React, implementando hooks avanzados, Context API, y sistema de caché inteligente.
 
-## Available Scripts
+## 🚀 Características
 
-In the project directory, you can run:
+-  **CRUD Completo**: Crear, Leer, Actualizar y Eliminar productos
+-  **Estado Global**: Implementado con Context API y useReducer
+-  **Sistema de Caché**: Cache en memoria + localStorage con TTL de 5 minutos
+-  **Búsqueda y Filtros**: Filtrar productos por nombre, descripción y categoría
+-  **Validación**: Validación de formularios en el frontend
+-  **Optimización**: Uso de useMemo y React.memo para prevenir re-renders innecesarios
 
-### `npm start`
+## 📋 Prerequisitos
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Node.js (v14 o superior)
+- npm o yarn
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+##  Instalación
 
-### `npm test`
+1. **Clonar el repositorio**
+```bash
+git clone <tu-repositorio>
+cd gestion-estado
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. **Instalar dependencias**
+```bash
+npm install
+```
 
-### `npm run build`
+##  Ejecución
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+npm run dev
+```
+Esto iniciará:
+- React en `http://localhost:3000`
+- JSON Server en `http://localhost:3001`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+##  Funcionalidades Principales
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### 1. Context API + useReducer
+Gestión centralizada del estado de productos con acciones tipo Redux:
+- `CARGAR_PRODUCTOS_INICIO/EXITO/ERROR`
+- `CREAR_PRODUCTO_EXITO`
+- `ACTUALIZAR_PRODUCTO_EXITO`
+- `ELIMINAR_PRODUCTO_EXITO`
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### 2. Sistema de Caché
+- **Cache en memoria**: Para acceso ultrarrápido durante la sesión
+- **localStorage**: Persistencia entre recargas
+- **TTL inteligente**: 5 minutos de validez
+- **Invalidación automática**: Se limpia al crear/editar/eliminar
 
-## Learn More
+### 3. Optimización con Memoización
+```javascript
+// Categorías únicas memoizadas
+const categorias = useMemo(() => {
+  return [...new Set(productos.map(p => p.categoria))];
+}, [productos]);
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+// Filtrado optimizado
+const productosFiltrados = useMemo(() => {
+  return productos.filter(producto => 
+    producto.nombre.toLowerCase().includes(busqueda.toLowerCase())
+  );
+}, [productos, busqueda]);
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+##  Modelo de Datos
 
-### Code Splitting
+### Producto
+```json
+{
+  "id": 1,
+  "nombre": "Laptop Dell XPS 13",
+  "precio": 1299.99,
+  "categoria": "Electrónica",
+  "stock": 15,
+  "descripcion": "Laptop ultrabook de alto rendimiento"
+}
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+##  Tecnologías Utilizadas
 
-### Analyzing the Bundle Size
+- **React** - Librería UI
+- **Context API** - Gestión de estado global
+- **useReducer** - Manejo de estado complejo
+- **Axios** - Peticiones HTTP
+- **JSON Server** - API REST mock
+- **localStorage** - Persistencia de datos
+- **useMemo / useCallback** - Optimización de renders
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
